@@ -1,21 +1,22 @@
-import re
+# -*- coding: utf-8 -*-
 import scrapy
+import re
 
 with open('phrases') as p:
-    phrases = [line.rstrip('\n') for line in p]
+    phrases = [line.strip('\n') for line in p]
 
-class BlogSpider(scrapy.Spider):
-    name = 'darkenigma'
+class ExamplecomSpider(scrapy.Spider):
+    name = 'examplecom'
 
     with open('URLs') as u:
-        start_urls = [line.rstrip('\n') for line in u]
+        start_urls = [line.strip('\n') for line in u]
 
     def parse(self, response):
         for phrase in phrases:
             for header in response.headers:
-                if re.search(phrase, str(response.headers[header])):
+                if re.search(phrase, str(response.headers[header]), re.IGNORECASE):
                     print(phrase + ' found in headers of ' + response.url)
                     break
 
-            if re.search(phrase, response.text):
+            if re.search(phrase, response.text, re.IGNORECASE):
                 print(phrase + ' found in body of ' + response.url)

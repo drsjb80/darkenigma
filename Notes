@@ -1,5 +1,0 @@
-foreach URL in a file
-    fetch page
-    foreach phrase in a different file
-        if phrase in page
-            print page and phrase

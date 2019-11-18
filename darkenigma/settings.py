@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+import os
+os.environ['http_proxy'] = "http://localhost:8118"
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 1,
+}
+
 # Scrapy settings for darkenigma project
 #
 # For simplicity, this file contains only settings considered important or

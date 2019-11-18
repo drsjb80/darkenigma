@@ -1,2 +1,2 @@
 tor
-privoxy /usr/local/etc/privoxy/config
+privoxy --no-daemon /usr/local/etc/privoxy/config

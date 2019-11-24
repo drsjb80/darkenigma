@@ -7,6 +7,7 @@ with open('phrases') as p:
 
 class ExamplecomSpider(scrapy.Spider):
     name = 'examplecom'
+    custom_settings = { 'DEPTH_LIMIT': 2 }
 
     with open('URLs') as u:
         start_urls = [line.strip('\n') for line in u]
@@ -20,3 +21,7 @@ class ExamplecomSpider(scrapy.Spider):
 
             if re.search(phrase, response.text, re.IGNORECASE):
                 print(phrase + ' found in body of ' + response.url)
+
+            for href in response.css('a::attr(href)'):
+                yield response.follow(href, self.parse)
+

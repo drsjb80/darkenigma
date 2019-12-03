@@ -5,6 +5,8 @@ Install tor and run it:
     brew install tor
     tor
 
+On debian/ubuntu, see https://2019.www.torproject.org/docs/debian.html.en
+
 Install torsocks
     brew install torsocks
 

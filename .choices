@@ -1,2 +1,2 @@
-tor
-privoxy --no-daemon /usr/local/etc/privoxy/config
+torsocks scrapy crawl darkenignma
+torsocks scrapy crawl darkenignma 2> /dev/null | tee OUT

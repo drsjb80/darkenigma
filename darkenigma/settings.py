@@ -30,7 +30,7 @@ ITEM_PIPELINES = {
 ELASTICSEARCH_SERVER = 'localhost'
 ELASTICSEARCH_PORT = 9200
 ELASTICSEARCH_INDEX = 'darkenigma'
-ELASTICSEARCH_UNIQ_KEY = 'url'
+ELASTICSEARCH_TYPE = 'items'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

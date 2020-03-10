@@ -1,2 +1,10 @@
+scrapy crawl darkenignma
+----
 torsocks ~/.local/bin/scrapy crawl darkenignma
 torsocks scrapy crawl darkenignma 2> /dev/null | tee OUT
+----
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.6.1
+----
+curl 'http://localhost:9200/'
+curl 'http://localhost:9200/darkenigma/'
+curl 'http://localhost:9200/darkenigma/_search'

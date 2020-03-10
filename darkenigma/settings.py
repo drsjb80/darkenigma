@@ -9,7 +9,7 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-LOG_LEVEL = 'WARNING'
+LOG_LEVEL = 'DEBUG'
 BOT_NAME = 'darkenigma'
 
 SPIDER_MODULES = ['darkenigma.spiders']
@@ -23,14 +23,13 @@ USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
-ITEM_PIPELINES = [
-  'scrapyelasticsearch.ElasticSearchPipeline',
-]
+ITEM_PIPELINES = {
+    'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 500
+}
 
 ELASTICSEARCH_SERVER = 'localhost'
 ELASTICSEARCH_PORT = 9200
 ELASTICSEARCH_INDEX = 'darkenigma'
-ELASTICSEARCH_TYPE = 'meetup'
 ELASTICSEARCH_UNIQ_KEY = 'url'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)

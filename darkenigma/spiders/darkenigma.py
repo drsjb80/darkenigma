@@ -2,7 +2,7 @@
 import scrapy
 import re
 import datetime
-from elasticsearch import Elasticsearch
+# from elasticsearch import Elasticsearch
 
 count = 0
 
@@ -10,7 +10,9 @@ class DarkenignmaSpider(scrapy.Spider):
     name = 'darkenignma'
     # custom_settings = { 'DEPTH_LIMIT': 0 }
 
-    es = Elasticsearch()
+    allowed_domains = 'onion'
+
+    # es = Elasticsearch()
 
     with open('URLs') as u:
         start_urls = [line.strip('\n') for line in u]
@@ -23,17 +25,17 @@ class DarkenignmaSpider(scrapy.Spider):
             print(count, flush=True)
 
         for location in locations:
-            tosave = { 'url': response.url,
+            yield { 'url': response.url,
                 'text': response.text,
                 'timestamp': datetime.now(),
             }
 
-            res = es.index(index="darkenigma", body=tosave)
-            print(res['result'])
+            # res = es.index(index="darkenigma", body=tosave)
+            # print(res['result'])
 
             for href in response.css('a::attr(href)'):
+                # remove anchors
                 href = re.sub(r'#.*', '', response.urljoin(href.get()))
-                if re.search('https?:\/\/.*\.onion.*', href, re.IGNORECASE):
-                    print('Following ' + href)
-                    yield response.follow(href, self.parse)
+                print('Following ' + href)
+                yield response.follow(href, self.parse)
 

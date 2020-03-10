@@ -7,9 +7,7 @@ count = 0
 
 class DarkenignmaSpider(scrapy.Spider):
     name = 'darkenignma'
-    # custom_settings = { 'DEPTH_LIMIT': 0 }
-
-    # allowed_domains = 'onion'
+    allowed_domains = ['onion']
 
     with open('URLs') as u:
         start_urls = [line.strip('\n') for line in u]
@@ -26,9 +24,6 @@ class DarkenignmaSpider(scrapy.Spider):
             'text': response.text, \
             'timestamp': datetime.now(), \
         }
-
-        # res = es.index(index="darkenigma", body=tosave)
-        # print(res['result'])
 
         for href in response.css('a::attr(href)'):
             # remove anchors

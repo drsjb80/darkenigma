@@ -1,4 +1,5 @@
 scrapy crawl darkenignma
+~/.local/bin/scrapy crawl darkenignma
 ----
 torsocks ~/.local/bin/scrapy crawl darkenignma
 torsocks scrapy crawl darkenignma 2> /dev/null | tee OUT

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import os
+os.environ['http_proxy'] = "http://localhost:8118"
+
 # Scrapy settings for darkenigma project
 #
 # For simplicity, this file contains only settings considered important or
@@ -66,6 +69,11 @@ ELASTICSEARCH_TYPE = 'items'
 #DOWNLOADER_MIDDLEWARES = {
 #    'darkenigma.middlewares.DarkenigmaDownloaderMiddleware': 543,
 #}
+
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 1,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html

@@ -12,7 +12,7 @@ os.environ['http_proxy'] = "http://localhost:8118"
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-LOG_LEVEL = 'DEBUG'
+LOG_LEVEL = 'WARNING'
 BOT_NAME = 'darkenigma'
 
 SPIDER_MODULES = ['darkenigma.spiders']
@@ -69,7 +69,6 @@ ELASTICSEARCH_TYPE = 'items'
 #DOWNLOADER_MIDDLEWARES = {
 #    'darkenigma.middlewares.DarkenigmaDownloaderMiddleware': 543,
 #}
-
 
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 1,

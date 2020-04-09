@@ -6,6 +6,8 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule
 
 count = 0
+visited = set()
+
 regex = re.compile(r'^https?://.*\.onion.*$', re.IGNORECASE)
 rm_anchors = re.compile(r'#.*')
 rm_queries = re.compile(r'\?.*$')
@@ -30,6 +32,8 @@ class DarkenignmaSpider(scrapy.Spider):
             'timestamp': datetime.now(), \
         }
 
+        global visited
+
         for href in response.css('a::attr(href)'):
             # remove anchors
             href = re.sub(rm_anchors, '', response.urljoin(href.get()))
@@ -39,8 +43,11 @@ class DarkenignmaSpider(scrapy.Spider):
             # assuming scrapy will track visited
             if not regex.match(href):
                 print('Not following ' + href)
-                yield None
-            else:
-                print('Following ' + href)
-                yield response.follow(href, self.parse)
+                return
+            if href in visited:
+                print('Already visited ' + href)
+                return
 
+            print('Following ' + href)
+            visited.add(href)
+            yield response.follow(href, self.parse)

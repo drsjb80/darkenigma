@@ -1,3 +1,4 @@
+PyOpenSSL
 scrapy
 elasticsearch
 ScrapyElasticSearch

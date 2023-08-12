@@ -1,3 +1,2 @@
 scrapy
-elasticsearch
-ScrapyElasticSearch
+pymongo

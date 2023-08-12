@@ -35,18 +35,19 @@ class DarkenignmaSpider(scrapy.Spider):
         global visited
 
         for href in response.css('a::attr(href)'):
+            # not sure why i did this, a comment would have been nice...
             # remove anchors
-            href = re.sub(rm_anchors, '', response.urljoin(href.get()))
+            # href = re.sub(rm_anchors, '', response.urljoin(href.get()))
             # remove queries
-            href = re.sub(rm_queries, '', href)
+            # href = re.sub(rm_queries, '', href)
 
             # assuming scrapy will track visited
             if not regex.match(href):
                 print('Not following ' + href)
                 return
+
             if href in visited:
                 print('Already visited ' + href)
-                return
 
             print('Following ' + href)
             visited.add(href)
